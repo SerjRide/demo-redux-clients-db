@@ -1,0 +1,343 @@
+@mixin testing {
+  border: solid 1px red;
+  box-shadow: inset 0 0 6px 0px #772b2b;
+}
+$btnHover: rgba(#E9E9E9, 0.51);
+
+html {
+  height: 100%;
+  body {
+    height: 100%;
+    div#root {
+      height: 100%;
+    }
+    ul {
+      padding-left: 0;
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+}
+
+.App {
+  height: 100%;
+  .head{
+    nav{
+      position: fixed;
+      z-index: 8;
+      width: 100%;
+      padding: 10px 10px;
+      box-shadow: 0 0 10px #A6A6A6;
+    }
+    .form {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      input {
+        margin-right: 5px;
+      }
+    }
+  }
+  .form-group {
+    margin-bottom: 0;
+  }
+  .end {
+    text-align: right;
+    span{
+      padding-right: 10px;
+      color: #B9B9B9;
+      text-shadow: 1px 1px 0.5px #D9D9D9;
+    }
+  }
+  .filter {
+    padding: 0;
+  }
+  .first {
+    input {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+    input:focus {
+      border-color: #d7d7d7;
+      outline: solid 1px #597ea2;
+      box-shadow: 0 0 0 #fff;
+    }
+  }
+  .middle {
+    select {
+      border-radius: 0;
+    }
+    input {
+      border-radius: 0;
+      border-left: solid 0px #597ea2;
+    }
+    select:focus {
+      border-color: #d7d7d7;
+      outline: solid 1px #597ea2;
+      box-shadow: 0 0 0 #fff;
+    }
+    input:focus {
+      border-color: #d7d7d7;
+      outline: solid 1px #597ea2;
+      box-shadow: 0 0 0 #fff;
+    }
+  }
+  .last {
+
+    button {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      border: solid 1px #D7D7D7;
+      border-left: solid 0px #D7D7D7;
+      color: #878787;
+    }
+    button:hover {
+      background-color: #D2D8EB;
+      color: #F9F9F9;
+    }
+  }
+}
+
+.left-navbar {
+  position: fixed;
+  background-color: white;
+  z-index: 10;
+  height: 100%;
+  box-shadow: 0 0 50px 10px #5a5a5a;
+  animation: getleftNav 0.3s;
+  a.nav-link {
+    color: #000;
+    text-align: left;
+    background-color: white;
+    border: 0;
+    width: 250px;
+  }
+  a.nav-link:hover {
+    background-color: $btnHover;
+  }
+  a.nav-link:focus {
+    outline: 0;
+    border-left: solid 5px #D2DFFF
+  }
+  hr {
+    border: solid 0.5px #ECECEC;
+    width: 100%;
+    margin-top: 3px;
+  }
+  .navbar-head{
+    display: flex;
+    padding-top: 11px;
+    margin-bottom: 0px;
+    .el {
+      padding-left: 10px;
+      button {
+        border: 0;
+        border-radius: 100px;
+        width: 50px;
+        height: 50px;
+        margin-top: -6px;
+        background-color: white;
+      }
+      button:hover {
+        background-color: $btnHover;
+      }
+      button:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.modal-shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#000000, 0.45);
+  z-index: 9;
+  animation: getShadow 0.3s;
+}
+
+.content {
+  padding-top: 75px;
+  .table {
+    margin-top: -17px;
+    tr { cursor: default; }
+    .passed { background-color: rgba(#3CA826, 0.10) }
+    .not-passed { background-color: rgba(#A82626, 0.1) }
+    .passed:hover { background-color: rgba(#3CA826, 0.05) }
+    .not-passed:hover { background-color: rgba(#A82626, 0.05) }
+    td, th { vertical-align: middle }
+    .sort-btn {
+      th{ cursor: pointer }
+      th[data-name=customer] { width: 15% }
+      th[data-name=date] { width: 10% }
+      th[data-name=name] { width: 15% }
+      th[data-name=contacts] { width: 30% }
+      th[data-name=product] { width: 20% }
+      th[data-name=price] { width: 5% }
+    }
+  }
+  .customers {
+    margin-top: -17px;
+    .sort-btn {
+      th { cursor: pointer }
+      th[data-name=customer] { width: 23% }
+      th[data-name=count] { width: 7% }
+      th[data-name=date] { width: 8.5% }
+      th[data-name=true_amount] { width: 8% }
+      th[data-name=total_amount] { width: 8% }
+      th[data-name=deviation] { width: 5% }
+      th[data-name=percent] { width: 5% }
+      th[data-name=RFM] { width: 5% }
+    }
+  }
+}
+
+.add-order {
+  p {
+    margin-bottom: 2px;
+  }
+  .products-list{
+    display: flex;
+    div {
+      margin-right: 20px;
+    }
+  }
+  .btn-sm {
+    margin-top: 10px;
+  }
+  .form-group {
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
+.period-setting {
+  .form-group {
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
+@keyframes getShadow {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes getleftNav {
+  from { transform: translateX(-150px); }
+  to { transform: translateX(0); }
+}
+
+.entrance {
+  @include testing;
+  display: flex;
+  margin: 10px 50px;
+}
+
+.alert {
+  position: fixed;
+  z-index: 9999;
+  width: 120%;
+  animation-name: alert;
+  animation-duration: 2s;
+  transform:translateY(-50px);
+  opacity: 0.9;
+}
+
+@keyframes alert {
+  from {  transform:translateY(-50px); }
+  10%,90% { transform:translateY(0px); }
+  to { transform:translateY(-50px); }
+}
+
+.main-analisis {
+  .card {
+    margin-bottom: 20px;
+  }
+  .schedule, .diagram {
+    select {
+      border: solid 0px #fff;
+      color: #555;
+      width: auto;
+    }
+    select:focus {
+      outline: solid 0px #fff;
+    }
+    .diagram-tooltip {
+      background-color: rgba(#212121, 1);
+      box-shadow: 0 0 2px #202020;
+      padding: 5px;
+      border-radius: 5px;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.edit-order {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  .my-modal {
+    display: flex;
+    width:80%;
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 0 10px 2px #4F4F4F;
+    border-radius: 5px;
+    z-index: 10;
+    padding: 20px 20px 10px 20px;
+    animation: modal 0.1s;
+    .my-modal-content {
+      width: 100%;
+      p { margin: 0 }
+      .header {
+        display: flex;
+        h5 { margin: 2px 0 0 0 }
+        button {
+          padding: 0 12px 10px 12px;
+          color: rgba(#A3A3A3, 0.20);
+        }
+        button:hover { color: #A3A3A3 }
+      }
+      input {
+        border: solid 0px #fff;
+        border-bottom: solid 1px #D6D6D6;
+        width: 300px;
+      }
+      input:focus { outline: solid 0px #fff }
+      .modal-footer { border: solid 0px #fff }
+    }
+  }
+}
+
+.login{
+  height: 100%;
+  .row{
+    display: flex;
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@keyframes modal {
+  from {
+    transform:scale(2);
+    opacity: 0;
+  }
+  to {
+    transform:scale(1);
+    opacity: 1;
+  }
+}

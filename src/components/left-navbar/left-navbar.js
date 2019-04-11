@@ -48,16 +48,6 @@ class LeftNavbar extends Component {
           Аналитика
           </Link>
           <hr />
-          <Link className="nav-link"
-          to="/add-order"
-          onClick={ () => hideNavbar() }>
-          Добавить заказ
-          </Link>
-          <Link className="nav-link"
-          to="/del-order"
-          onClick={ () => hideNavbar() }>
-          Удалить заказ
-          </Link>
         </nav>
       </div>
       </React.Fragment>

@@ -12,10 +12,6 @@ import {
 
 class Head extends Component {
 
-  comonentDidMount() {
-
-  }
-
   componentDidUpdate() {
     const { pathname } = document.location;
     const { year, mounth, day } = this.props.state.filter;
@@ -31,19 +27,18 @@ class Head extends Component {
     let { value: day } = this.inputDay;
     const { value: info } = this.inputInfo;
     const { pathname } = document.location;
-    const token = localStorage.getItem('token');
-    if (pathname === '/orders') this.props.getData(year, token);
-    if (pathname === '/customers') this.props.getCustomers(year, token);
+    if (pathname === '/orders') this.props.getData(year);
+    if (pathname === '/customers') this.props.getCustomers(year);
     this.props.changeFilter(year, mounth, day, info);
   }
 
   removeFilter = () => {
     const nowYear = (((new Date()).getFullYear()) + '').slice(-2);
-    const nowMounth = '0' + ((new Date()).getMonth() + 1)
+    const nowMounth = '03'
     const { pathname } = document.location;
     const token = localStorage.getItem('token');
-    if (pathname === '/orders') this.props.getData(nowYear, token);
-    if (pathname === '/customers') this.props.getCustomers(nowYear, token);
+    if (pathname === '/orders') this.props.getData(nowYear);
+    if (pathname === '/customers') this.props.getCustomers(nowYear);
     this.props.changeFilter(nowYear, nowMounth, '', '');
     this.inputMounth.value = '';
     this.inputInfo.value = '';
@@ -82,6 +77,12 @@ class Head extends Component {
     } else {
       filter_action  = this.removeFilter;
       filter_button = 'Сброс';
+    }
+
+    if (pathname === '/orders' && this.inputYear) {
+      if (this.inputYear.value === '0') {
+        this.removeFilter();
+      }
     }
 
     return (

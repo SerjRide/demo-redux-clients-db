@@ -12,7 +12,6 @@ class Content extends Component {
 
   render() {
     const { authorize } = this.props.state;
-    console.log(authorize);
     const log = <Redirect to='/login'/>;
     const content = <Redirect to='/orders'/>;
     let Main = () => authorize === null ? log : content

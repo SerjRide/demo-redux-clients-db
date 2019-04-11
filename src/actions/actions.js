@@ -26,6 +26,7 @@ const changeFilter     = (year, mounth, day, info) => ({ type: "FILTER_CHANGE",
                                                   year, mounth, day, info })
 
 const getData = (year) => {
+  if (year === '0') return (dispatch) => dispatch(reqOrdersDone(demo_orders_19));
   if (year === '10') return (dispatch) => dispatch(reqOrdersDone(demo_orders_10));
   if (year === '11') return (dispatch) => dispatch(reqOrdersDone(demo_orders_11));
   if (year === '12') return (dispatch) => dispatch(reqOrdersDone(demo_orders_12));

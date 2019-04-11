@@ -31,7 +31,7 @@ const calcProductsSumm = (arr) => {
 const getProductsNames = (obj) => {
   const { product } = obj
   let productsNames = ''
-  if (typeof(product[0]) === 'string') productsNames = product[0]
+  if (typeof(product[0]) === 'string') productsNames = product;
   else {
     for (let j = 0; j < product.length; j++) {
       let join = ', ';

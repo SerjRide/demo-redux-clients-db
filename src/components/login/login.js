@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { getAutorize } from '../../actions';
+import { getAutorize } from '../../actions'
 
 class Login extends Component {
 
@@ -9,12 +8,6 @@ class Login extends Component {
     const log = this.loginInput.value;
     const pass = this.passInput.value;
     this.props.getAutorize(log, pass);
-  }
-
-  componentDidUpdate() {
-    if (this.props.state.token !== null) {
-      this.check();
-    }
   }
 
   render() {
@@ -55,10 +48,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({ state: state })
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getAutorize: (log, pass) => dispatch(getAutorize(log, pass))
-  }
-};
-
+const mapDispatchToProps = (dispatch) => ({
+  getAutorize: (log, pass) => dispatch(getAutorize(log, pass))
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Entrance from '../entrance';
 import Table from '../content/table';
 import { connect } from 'react-redux';
 import AddOrder from './add-order';
@@ -13,6 +12,7 @@ class Content extends Component {
 
   render() {
     const { authorize } = this.props.state;
+    console.log(authorize);
     const log = <Redirect to='/login'/>;
     const content = <Redirect to='/orders'/>;
     let Main = () => authorize === null ? log : content

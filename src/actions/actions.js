@@ -1,15 +1,18 @@
-const demo_orders_10      = require('../demo/orders/orders_10.json');
-const demo_orders_11      = require('../demo/orders/orders_11.json');
-const demo_orders_12      = require('../demo/orders/orders_12.json');
-const demo_orders_13      = require('../demo/orders/orders_13.json');
-const demo_orders_14      = require('../demo/orders/orders_14.json');
-const demo_orders_15      = require('../demo/orders/orders_15.json');
-const demo_orders_16      = require('../demo/orders/orders_16.json');
-const demo_orders_17      = require('../demo/orders/orders_17.json');
-const demo_orders_18      = require('../demo/orders/orders_18.json');
-const demo_orders_19      = require('../demo/orders/orders_19.json');
+import passwordHash from 'password-hash';
 
+const demo_orders_10   = require('../demo/orders/orders_10.json');
+const demo_orders_11   = require('../demo/orders/orders_11.json');
+const demo_orders_12   = require('../demo/orders/orders_12.json');
+const demo_orders_13   = require('../demo/orders/orders_13.json');
+const demo_orders_14   = require('../demo/orders/orders_14.json');
+const demo_orders_15   = require('../demo/orders/orders_15.json');
+const demo_orders_16   = require('../demo/orders/orders_16.json');
+const demo_orders_17   = require('../demo/orders/orders_17.json');
+const demo_orders_18   = require('../demo/orders/orders_18.json');
+const demo_orders_19   = require('../demo/orders/orders_19.json');
 const demo_customers   = require('../demo/customers.json');
+const users            = require('../demo/users.json');
+
 const showNavbar       = () => ({ type: 'SHOW_NAVBAR' });
 const hideNavbar       = () => ({ type: 'HIDE_NAVBAR' });
 const showModal        = (id) => ({ type: 'SHOW_MODAL', id });
@@ -17,7 +20,6 @@ const hideModal        = () => ({ type: 'HIDE_MODAL' });
 const reqOrdersDone    = (orders) => ({ type: "ORDERS_FETCH_DATA_SUCCESS", orders });
 const reqCustomersDone = (customers) => ({ type: "CUSTOMERS_FETCH_DATA_SUCCESS", customers });
 const alertSaccess     = (text) => ({ type: 'ALERT_SUCCESS', text: text });
-const authorization    = (token, rights) => ({ type: 'AUTHORIZE', token, rights });
 const sign_out         = () => ({ type: 'SIGN_OUT' });
 const mainAnalysis     = () => ({ type: 'MAIN_ANALYSIS' });
 const changeFilter     = (year, mounth, day, info) => ({ type: "FILTER_CHANGE",
@@ -42,29 +44,17 @@ const getCustomers = () => {
   };
 };
 
-const autorize = async (dispatch, log, pass) => {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({
-      login: log,
-      password: pass
-    }),
-    headers:{'content-type': 'application/json'}
-  }
-  const res = await fetch('/signin', options);
-  const body = await res.json();
-  await dispatch(authorization(body.token, body.rights));
-  if (body.token !== null) {
-    localStorage.setItem('token', body.token);
-    localStorage.setItem('login', log);
-  }
-  return body.token
-}
-
 const getAutorize = (log, pass) => {
-  return (dispatch) => {
-    autorize(dispatch, log, pass)
-  };
+  const hash = passwordHash.generate(pass);
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].login === log) {
+      if (passwordHash.verify(pass, users[i].password)) {
+        localStorage.setItem('token', hash);
+        localStorage.setItem('login', log);
+        return (dispatch) => dispatch({ type: "AUTHORIZE" });
+      } else return (dispatch) => dispatch({ type: "NON_AUTHORIZE" })
+    } else return (dispatch) => dispatch({ type: "NON_AUTHORIZE" })
+  }
 }
 
 export {

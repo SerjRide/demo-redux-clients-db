@@ -1,12 +1,11 @@
-const token = (state = {}, action) => {
+const token = (state = 0, action) => {
   switch (action.type) {
     case "AUTHORIZE":
-      return state = {
-        token: action.token,
-        rights: action.rights
-      };
+      return state + 1 ;
     case "SIGN_OUT":
-      return state = {};
+      return state = 0;
+    case "NON_AUTHORIZE":
+      return state - 1;
     default:
       return state;
   }

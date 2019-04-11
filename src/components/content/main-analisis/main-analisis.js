@@ -241,6 +241,7 @@ class MainAnalisis extends Component {
           <option value="price">Выручки за период</option>
         </select>
         <div>
+
         <XYPlot xType="ordinal" height={300} width={650}>
           <VerticalGridLines />
           <HorizontalGridLines />
@@ -257,6 +258,7 @@ class MainAnalisis extends Component {
             }/>
           <Crosshair values={ this.state.crosshairValues }/>
         </XYPlot>
+
         </div>
       </div>
     );
@@ -293,6 +295,7 @@ class MainAnalisis extends Component {
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+
       <RadialChart
         className={'donut-chart-example'}
         innerRadius={100}
@@ -302,8 +305,7 @@ class MainAnalisis extends Component {
         onValueMouseOver={v => this.setState({value: v})}
         onSeriesMouseOut={v => this.setState({value: false})}
         width={300}
-        height={300}
-        padAngle={0}>
+        height={300}>
           {value !== false &&
             <Hint value={value}>
               <div className="diagram-tooltip">
@@ -314,6 +316,7 @@ class MainAnalisis extends Component {
             </Hint>
           }
       </RadialChart>
+
       </div>
     );
 

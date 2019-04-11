@@ -90,7 +90,7 @@ const genBCryptHash = (text) => {
   console.log(hash);
 }
 
-randomData(10);
+// randomData(10);
 // genBCryptHash('Елена');
 
 app.listen(config.serverPort, () => {
